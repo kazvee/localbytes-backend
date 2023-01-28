@@ -6,21 +6,6 @@ const getCoordsForAddress = require('../utils/location');
 const Place = require('../models/place');
 const User = require('../models/user');
 
-let DUMMY_PLACES = [
-  {
-    id: 'p1',
-    title: 'Empire State Building',
-    description: 'World-famous skyscraper!',
-    imageUrl: 'https://picsum.photos/200/300?random=1',
-    address: '20 W 34th St., New York, NY 10001, USA',
-    location: {
-      lat: 44.4878108,
-      lng: -111.9415355,
-    },
-    creator: 'u1',
-  },
-];
-
 const getPlaceById = async (req, res, next) => {
   // could also use
   // function getPlaceById() { ... }
@@ -104,7 +89,7 @@ const createPlace = async (req, res, next) => {
     description,
     address,
     location: coordinates,
-    image: 'https://picsum.photos/200/300?random=1',
+    image: req.file.path,
     creator,
   });
 
