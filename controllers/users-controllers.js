@@ -3,15 +3,6 @@ const { validationResult } = require('express-validator');
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
-const DUMMY_USERS = [
-  {
-    id: 'u1',
-    name: 'Test User1',
-    email: 'test1@test.com',
-    password: '1testers',
-  },
-];
-
 const getUsers = async (req, res, next) => {
   let users;
   try {
@@ -33,6 +24,7 @@ const signup = async (req, res, next) => {
       new HttpError('Invalid inputs provided, please check your data! 🧐', 422)
     );
   }
+
   const { name, email, password } = req.body;
 
   let existingUser;
@@ -58,7 +50,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name, // name: name
     email,
-    image: 'https://picsum.photos/200/300?random=1',
+    image: req.file.path,
     password,
     places: [],
   });
