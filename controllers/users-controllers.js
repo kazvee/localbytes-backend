@@ -120,7 +120,7 @@ const login = async (req, res, next) => {
   if (!existingUser) {
     const error = new HttpError(
       'Login failed! Invalid credentials provided. Please check your inputs and try again! 🧐',
-      401
+      403
     );
     return next(error);
   }
@@ -139,7 +139,7 @@ const login = async (req, res, next) => {
   if (!isValidPassword) {
     const error = new HttpError(
       'Login failed! Invalid credentials provided. Please check your inputs and try again! 🧐',
-      401
+      403
     );
     return next(error);
   }
